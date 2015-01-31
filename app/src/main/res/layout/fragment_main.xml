@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="18sp"-->
+        <!--android:text="Today, January 29"-->
+        <!--android:id="@+id/date_of_today"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="21"-->
+        <!--android:textSize="18sp"-->
+        <!--android:id="@+id/temp_high"-->
+        <!--android:layout_marginTop="17dp"-->
+        <!--android:layout_below="@+id/date_of_today"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="20dp" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="8"-->
+        <!--android:textSize="18sp"-->
+        <!--android:id="@+id/temp_low"-->
+        <!--android:layout_below="@+id/temp_high"-->
+        <!--android:layout_alignStart="@+id/temp_high" />-->
+
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/icon"-->
+        <!--android:src="@drawable/ic_launcher"-->
+        <!--android:layout_alignTop="@+id/temp_high"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginEnd="76dp" />-->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_forecast"
+        android:layout_gravity="left|top" />
+</FrameLayout>
