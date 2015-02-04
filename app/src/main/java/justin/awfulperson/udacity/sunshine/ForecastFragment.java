@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -28,7 +31,13 @@ import java.util.ArrayList;
  */
 public class ForecastFragment extends Fragment {
 
-    public ForecastFragment() {
+    public ForecastFragment() {}
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -53,7 +62,31 @@ public class ForecastFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.forecastfragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_refresh:
+                new FetchWeatherTask().execute();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
+
+        private final String TAG = FetchWeatherTask.class.getSimpleName();
 
         @Override
         protected Void doInBackground(Void... params) {
