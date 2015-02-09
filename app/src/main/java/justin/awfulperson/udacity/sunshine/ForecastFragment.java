@@ -39,6 +39,8 @@ import java.util.Date;
  */
 public class ForecastFragment extends Fragment {
 
+    private ArrayAdapter<String> mForecastAdapter;
+
     public ForecastFragment() {}
 
     @Override
@@ -90,7 +92,7 @@ public class ForecastFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
+    public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
@@ -173,7 +175,7 @@ public class ForecastFragment extends Fragment {
         }
 
         @Override
-        protected Void doInBackground(String... params) {
+        protected String[] doInBackground(String... params) {
 
             if (params.length == 0) {
                 return null;
@@ -257,7 +259,29 @@ public class ForecastFragment extends Fragment {
                     }
                 }
             }
+
+            try {
+                return getWeatherDataFromJson(forecastJsonStr, numDays);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // This will only happen if there was an error parsing the forecast.
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            super.onPostExecute(strings);
+
+            if (strings != null) {
+                mForecastAdapter.clear();
+
+                mForecastAdapter.clear();
+                for(String dayForecastStr : strings) {
+                    mForecastAdapter.add(dayForecastStr);
+                }
+            }
         }
     }
 }
